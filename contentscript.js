@@ -1,31 +1,36 @@
+let gorillaTerminated=0
 makeGorilla = () => {
     setTimeout(() =>{
     const gorillaImg = document.createElement("img")
-    gorillaImg.src="https://i.pinimg.com/originals/f8/a3/85/f8a3856d260df0d7166e2688d2154ec3.png"
-    gorillaImg.style="width:30%;height:30%"
-
+    gorillaImg.src=chrome.runtime.getURL("gorilla.gif")
+    gorillaImg.style=`opacity:${100*(0.9**gorillaTerminated)}%`
+    
     const button = document.createElement("button")
-    button.innerText="Close"
-    button.onclick=function closeImg() { 
-        console.log("hiii")   
+    button.innerText="x"
+    button.style="cursor:pointer;border-color:transparent;background-color:transparent;color:grey;font-size:2.5rem"
+    button.onclick=function closeImg() {   
         const gorilla = document.getElementById("gorilla")
         gorilla.remove()
         clearInterval(ookTime)
+        gorillaTerminated+=1
         //Self-resurrection baby
         makeGorilla()
     }
 
     const gorilla = document.createElement("div")
     gorilla.id = "gorilla"
-    gorilla.appendChild(button)
     gorilla.appendChild(gorillaImg)
-    gorilla.style="position:fixed;z-index=1000;top:50%;left:50%;transform:translate(-50%,-50%)"
+    gorilla.appendChild(button)
+    let x = Math.floor(Math.random()*70)+10
+    let y = Math.floor(Math.random()*70)+10
+    gorilla.style=`display:flex;position:fixed;z-index:10000;top:${x}%;left:${y}%;transform:translate(-50%,-50%)`
 
     insertPoint = document.querySelector("body")
     insertPoint.appendChild(gorilla)
 
-    const ookTime = setInterval(ookinator,1000)
-    },30000)
+    //ookinate text every 5 seconds
+    const ookTime = setInterval(ookinator,5000)
+    },1000)
 }
 //all elements with text
 
@@ -50,6 +55,3 @@ ookinator = () => {
         }
     }
 }
-// for (let i = 0; i<10;i++) {
-//     ookinator()
-// }
