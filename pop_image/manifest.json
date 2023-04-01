@@ -1,0 +1,9 @@
+{
+    "manifest_version": 2,
+    "name": "Image Popup",
+    "version": "1.0",
+    "description": "Displays an image in a popup.",
+    "browser_action": {
+        "default_popup": "popup.html"
+    }
+}
