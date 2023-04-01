@@ -1,0 +1,17 @@
+{
+    "name":"gorrila",
+    "description":"gorrila awareness raiser",
+    "version":"0.1.0",
+    "author":"a",
+
+    "manifest_version":3,
+    "content_scripts":
+    [
+        {
+            "js": ["contentscript.js"],
+            "matches":["*://*/*"],
+            "all_frames": true
+        }
+    ]
+
+}
