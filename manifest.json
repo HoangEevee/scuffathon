@@ -5,6 +5,12 @@
     "author":"a",
 
     "manifest_version":3,
+    "web_accessible_resources":[
+        {
+            "matches":["*://*/*"],
+            "resources":["gorilla.gif"]
+        }
+    ],
     "content_scripts":
     [
         {

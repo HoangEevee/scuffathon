@@ -1,19 +1,21 @@
 let gorillaTerminated=0
 makeGorilla = () => {
+    let spawnTime = Math.floor(Math.random()*40000)+5000
     setTimeout(() =>{
     const gorillaImg = document.createElement("img")
     gorillaImg.src=chrome.runtime.getURL("gorilla.gif")
     gorillaImg.style=`opacity:${100*(0.9**gorillaTerminated)}%`
-    
+    gorillaImg.alt="totally inconspicuous gorilla. You may not think so but 8 out of 10 doctors fall for this trick"
+
     const button = document.createElement("button")
     button.innerText="x"
-    button.style="cursor:pointer;border-color:transparent;background-color:transparent;color:grey;font-size:2.5rem"
+    button.style="cursor:pointer;border-color:transparent;background-color:transparent;color:grey;font-size:1.7rem;padding=0"
     button.onclick=function closeImg() {   
         const gorilla = document.getElementById("gorilla")
         gorilla.remove()
         clearInterval(ookTime)
         gorillaTerminated+=1
-        //Self-resurrection baby
+        //Self-resurrection baby!
         makeGorilla()
     }
 
@@ -30,14 +32,10 @@ makeGorilla = () => {
 
     //ookinate text every 5 seconds
     const ookTime = setInterval(ookinator,5000)
-    },1000)
+    },spawnTime)
 }
-//all elements with text
 
-
-makeGorilla()
-
-// Replace every word with anything else
+// Replace every word with ook
 text = document.querySelectorAll("h1,h2,h3,h4,h5,p,li,td,caption,span,a")
 ookinator = () => {
     while(true) {
@@ -55,3 +53,5 @@ ookinator = () => {
         }
     }
 }
+
+makeGorilla()
