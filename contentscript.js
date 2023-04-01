@@ -1,6 +1,3 @@
-//This add a gorilla pic and close button
-
-
 makeGorilla = () => {
     setTimeout(() =>{
     const gorillaImg = document.createElement("img")
@@ -13,6 +10,7 @@ makeGorilla = () => {
         console.log("hiii")   
         const gorilla = document.getElementById("gorilla")
         gorilla.remove()
+        clearInterval(ookTime)
         //Self-resurrection baby
         makeGorilla()
     }
@@ -25,16 +23,33 @@ makeGorilla = () => {
 
     insertPoint = document.querySelector("body")
     insertPoint.appendChild(gorilla)
-    },10000)
+
+    const ookTime = setInterval(ookinator,1000)
+    },30000)
 }
+//all elements with text
+
 
 makeGorilla()
 
 // Replace every word with anything else
-for (tag of ["h1","h2","h3","h4","h5","p","li","td","caption","span","a"]){
-    const text = document.querySelectorAll(tag)
-    console.log(text)
-    for (let i=0;i<text.length;i++) {
-        text[i].innerHTML = text[i].innerHTML + "AAAA"
+text = document.querySelectorAll("h1,h2,h3,h4,h5,p,li,td,caption,span,a")
+ookinator = () => {
+    while(true) {
+        i = Math.floor(Math.random()*text.length)
+
+        if (text[i].innerText && text[i].innerText != "Ook!") {
+            // All this just to change text without deleting childNodes. CANNOT set innerText directly
+            for (node of text[i].childNodes) {
+                console.log(node)
+                if (node.nodeType === Node.TEXT_NODE) {
+                    node.textContent = "Ook!"
+                }
+            }
+            break
+        }
     }
 }
+// for (let i = 0; i<10;i++) {
+//     ookinator()
+// }
