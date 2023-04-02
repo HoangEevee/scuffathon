@@ -32,8 +32,15 @@ makeGorilla = () => {
     insertPoint = document.querySelector("body")
     insertPoint.appendChild(gorilla)
 
-    //ookinate text every 5 seconds
-    const ookTime = setInterval(ookinator,3000)
+    //ramping ookinate text start every 3 seconds till every 1 second
+    let ooks = 0
+    let ookTime
+    rampingOok = () => {
+        ookinator()
+        ookTime = setTimeout(rampingOok,ooks>6?1000:3000*(0.85**ooks))
+        ooks += 1
+    }
+    rampingOok()
 
     },spawnTime)
 }
