@@ -1,24 +1,25 @@
-let gorillaTerminated=0
+let gorillaDetected=0
 makeGorilla = () => {
-    let spawnTime = Math.floor(Math.random()*40000)+5000
+    let spawnTime = Math.floor(Math.random()*25000)+5000
     setTimeout(() =>{
     const gorillaImg = document.createElement("img")
     gorillaImg.src=chrome.runtime.getURL("gorilla.gif")
-    gorillaImg.style=`opacity:${100*(0.9**gorillaTerminated)}%`
+    gorillaImg.style=`opacity:${100*(0.85**gorillaDetected)}%`
     gorillaImg.alt="totally inconspicuous gorilla. You may not think so but 8 out of 10 doctors fall for this trick"
 
     const button = document.createElement("button")
     button.innerText="x"
     button.style="cursor:pointer;border-color:transparent;background-color:transparent;color:grey;font-size:1.7rem;padding=0"
+
     button.onclick=function closeImg() {   
         const gorilla = document.getElementById("gorilla")
         gorilla.remove()
         clearInterval(ookTime)
-        gorillaTerminated+=1
+        gorillaDetected+=1
         //Self-resurrection baby!
         makeGorilla()
     }
-
+    //gorilla = gorilla image + close button
     const gorilla = document.createElement("div")
     gorilla.id = "gorilla"
     gorilla.appendChild(gorillaImg)
@@ -31,7 +32,8 @@ makeGorilla = () => {
     insertPoint.appendChild(gorilla)
 
     //ookinate text every 5 seconds
-    const ookTime = setInterval(ookinator,5000)
+    const ookTime = setInterval(ookinator,3000)
+
     },spawnTime)
 }
 
