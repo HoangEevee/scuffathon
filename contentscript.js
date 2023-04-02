@@ -1,4 +1,5 @@
 let gorillaDetected=0
+
 makeGorilla = () => {
     let spawnTime = Math.floor(Math.random()*25000)+5000
     setTimeout(() =>{
